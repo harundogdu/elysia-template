@@ -1,7 +1,8 @@
-const users = [
+const users: User[] = [
   {
     id: 1,
     name: "John",
+    username: "john",
     age: 20,
     job: "Developer",
     hobbies: ["Coding", "Gaming"],
@@ -14,6 +15,7 @@ const users = [
   {
     id: 2,
     name: "Jane",
+    username: "jane",
     age: 21,
     job: "Designer",
     hobbies: ["Designing", "Gaming"],
@@ -26,6 +28,7 @@ const users = [
   {
     id: 3,
     name: "Bob",
+    username: "bob",
     age: 22,
     job: "Marketer",
     hobbies: ["Marketing", "Gaming"],
@@ -38,6 +41,7 @@ const users = [
   {
     id: 4,
     name: "Alice",
+    username: "alice",
     age: 23,
     job: "Manager",
     hobbies: ["Managing", "Gaming"],
