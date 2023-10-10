@@ -3,7 +3,8 @@ import { Elysia } from "elysia";
 import { addNewUser, getAllUsers, getUserById } from "./services/userServices";
 
 const app = new Elysia()
-  .get("/", getAllUsers)
+  .get("/", () => new Response("Welcome to Elysia!"))
+  .get("/users", getAllUsers)
   .get("/id/:id", (context) => {
     const { params } = context;
     const user = getUserById(params.id);
@@ -16,7 +17,17 @@ const app = new Elysia()
       users,
     };
   })
-  .get("/*", () => "404 Not Found")
+  .get(
+    "/*",
+    () =>
+      new Response("Not found!", {
+        status: 404,
+        statusText: "Not found!",
+        headers: {
+          "Content-Type": "text/html",
+        },
+      })
+  )
   .listen(3000);
 
 console.log(
