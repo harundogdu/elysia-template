@@ -1,20 +1,14 @@
 import { Elysia } from "elysia";
 
-const users = [
-  { id: 1, name: "John" },
-  { id: 2, name: "Jane" },
-  { id: 3, name: "Bob" },
-];
-
-const getUserById = (id: number | string) =>
-  users.find((user) => Number(user.id) === (Number(id) || 0));
+import { getUserById } from "./services/userServices";
 
 const app = new Elysia()
   .get("/", () => "Hello World!")
   .get("/test", () => "Hello Test!")
   .post("/test", () => "Hello Test From Post!")
-  .get("/id/:id", ({ params: { id } }) => {
-    const user = getUserById(id);
+  .get("/id/:id", (context) => {
+    const { params } = context;
+    const user = getUserById(params.id);
     return user ? user : "User not found";
   })
   .get("/*", () => "404 Not Found")
