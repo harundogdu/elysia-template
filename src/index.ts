@@ -1,6 +1,6 @@
 import { Elysia } from "elysia";
 
-import { getUserById } from "./services/userServices";
+import { addNewUser, getUserById } from "./services/userServices";
 
 const app = new Elysia()
   .get("/", () => "Hello World!")
@@ -10,6 +10,13 @@ const app = new Elysia()
     const { params } = context;
     const user = getUserById(params.id);
     return user ? user : "User not found";
+  })
+  .post("/signup", (context) => {
+    const { body } = context;
+    const users = addNewUser(context.body as User);
+    return {
+      users,
+    };
   })
   .get("/*", () => "404 Not Found")
   .listen(3000);
