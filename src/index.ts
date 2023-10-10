@@ -1,11 +1,9 @@
 import { Elysia } from "elysia";
 
-import { addNewUser, getUserById } from "./services/userServices";
+import { addNewUser, getAllUsers, getUserById } from "./services/userServices";
 
 const app = new Elysia()
-  .get("/", () => "Hello World!")
-  .get("/test", () => "Hello Test!")
-  .post("/test", () => "Hello Test From Post!")
+  .get("/", getAllUsers)
   .get("/id/:id", (context) => {
     const { params } = context;
     const user = getUserById(params.id);
