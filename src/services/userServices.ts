@@ -1,5 +1,17 @@
 import { users } from "../assets/@fake.db";
 
+const getAllUsers = () => {
+  const _users = [];
+  for (let i = 0; i < 20000; i++) {
+    _users.push(...users);
+  }
+  return {
+    userCount: _users.length,
+    users: _users,
+    status: true,
+  };
+};
+
 const getUserById = (id: number | string) =>
   users.find((user: User) => Number(user.id) === (Number(id) || 0));
 
@@ -29,4 +41,4 @@ const addNewUser = (user: User) => {
   };
 };
 
-export { addNewUser, getUserById };
+export { addNewUser, getUserById, getAllUsers };
