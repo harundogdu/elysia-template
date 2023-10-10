@@ -17,6 +17,7 @@ const app = new Elysia()
     const user = getUserById(id);
     return user ? user : "User not found";
   })
+  .get("/*", () => "404 Not Found")
   .listen(3000);
 
 console.log(
