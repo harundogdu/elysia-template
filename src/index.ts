@@ -1,4 +1,5 @@
 import { Elysia, t as validationSchema } from "elysia";
+import { swagger } from "@elysiajs/swagger";
 
 import { addNewUser, getAllUsers, getUserById } from "./services/userServices";
 
@@ -9,6 +10,7 @@ const app = new Elysia()
     description: "A simple API for testing Deno Deploy",
   })
   .decorate("getDate", () => Date.now())
+  .use(swagger())
   .get(
     "/",
     ({ store, getDate }) =>
